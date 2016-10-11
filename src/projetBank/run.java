@@ -1,13 +1,5 @@
 package projetBank;
 
-import projetBank.Client;
-import projetBank.Compte;
-import projetBank.CompteASeuil;
-import projetBank.CompteRemunere;
-import projetBank.ICompteASeuil;
-import projetBank.ICompteRemunere;
-import projetBank.BanqueException;
-
 public class run {
 
 	public static void main(String[] args) throws BanqueException {

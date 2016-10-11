@@ -1,5 +1,6 @@
 package projetBank;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Client {
@@ -8,7 +9,7 @@ public class Client {
 	
 	protected String nom, prenom;
 	protected int age, numero;
-	protected Compte[] tabCompte = new Compte[5];
+	protected ArrayList<Compte> tabCompte;
 	
 	public Client() {
 		this("", "", 0, 0);
@@ -24,7 +25,7 @@ public class Client {
 		this.prenom = prenom;
 		this.age = age;
 		this.numero = numero;
-		this.tabCompte = new Compte[5];
+		this.tabCompte = new ArrayList<Compte>();
 	}
 	
 	public int getAge(){
@@ -59,24 +60,31 @@ public class Client {
 		this.numero = unNum;
 	}
 	
-	public Compte[] getComptes() {
-		return this.tabCompte;
+	public ArrayList<Compte> getTabCompte() {
+		return tabCompte;
 	}
 
+	public void setTabCompte(ArrayList<Compte> tabCompte) {
+		this.tabCompte = tabCompte;
+	}
 	
 	@Override
 	public String toString() {
-		StringBuilder client = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		
-		client
-			.append("Client :\n\t nom ").append(nom)
-		    .append("\n\t prenom ").append(prenom)
-		    .append("\n\t age ").append(age)
-		    .append("\n\t numero ").append(numero)
-		    .append("\n\t comptes ").append(Arrays.toString(tabCompte))
-		    .append("");
+		builder.append("Client [nom=");
+		builder.append(nom);
+		builder.append(", prenom=");
+		builder.append(prenom);
+		builder.append(", age=");
+		builder.append(age);
+		builder.append(", numero=");
+		builder.append(numero);
+		builder.append(", tabCompte=");
+		builder.append(tabCompte);
+		builder.append("]");
 		
-		return client.toString();
+		return builder.toString();
 	}
 	
 	public void ajouterCompte(Compte cpt) throws BanqueException{
@@ -129,10 +137,20 @@ public class Client {
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
-		if (!Arrays.equals(tabCompte, other.tabCompte))
+		if (tabCompte == null) {
+			if (other.tabCompte != null)
+				return false;
+		} else if (!tabCompte.equals(other.tabCompte))
 			return false;
 		return true;
 	}
+
+
+	
+
+
+
+	
 
 	
 	
